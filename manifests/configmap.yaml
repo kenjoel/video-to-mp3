@@ -1,4 +1,9 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: v1
+kind: ConfigMap
 metadata:
-  name:vtmp3-configmap
+  name: configmap
+data:
+  HOST: host.minikube.internal
+  USER: docker
+  DB: video-to-mp3
+  PORT: "5432"

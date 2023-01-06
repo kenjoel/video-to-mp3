@@ -1,23 +1,30 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name:vtmp3
+  name: vtmp3
   labels:
-    app: auth
-    
+    app: vtmp3
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app:auth
+      app: vtmp3
+  strategy:
+     type: RollingUpdate
+     rollingUpdate:
+       maxSurge: 3
+  template:
+    metadata:
+      labels:
+        app: vtmp3
     spec:
       containers:
-        - name: v2mp3
+        - name: vtmp3
           image: inveigle/system-design
           ports:
             - containerPort: 5000
           envFrom:
             - configMapRef:
-              name: vtmp3-configmap
+              name: configmap
             - secretRef:
-              name: vtmp3-secret
+              name: secret

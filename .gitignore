@@ -1,4 +1,4 @@
-.venv
-.idea
-instance
+.venv/
+.idea/
+instance/
 __pycache__/

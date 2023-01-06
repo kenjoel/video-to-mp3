@@ -4,15 +4,15 @@ from django.utils.baseconv import base64
 from flask import Flask, request, g
 from flask_cors import CORS
 import jwt, datetime, os
-import psycopg2
+import psycopg
 
 # from flask_sqlalchemy import SQLAlchemy
 server = Flask(__name__)
 
-conn = psycopg2.connect(
+conn = psycopg.connect(
     host="localhost",
     database="video-to-mp3",
-    user=os.environ["DB_NAME"],
+    user=config,
     password=os.environ["DB_PASSWORD"]
 )
 
@@ -95,7 +95,6 @@ def validate_jwt() -> string:
 
     else:
         return "Missing Header Authorization", 401
-
 
 
 if __name__ == '__main__':
